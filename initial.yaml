@@ -1,0 +1,34 @@
+user:
+  is_admin: true  # Админ (true) или нет (false)
+  name: "Иван Иванов"
+  age: 30
+  position: "Разработчик"
+  skills:
+    - name: "Python"
+      level: 5
+      description: |
+        Опыт работы с Python более 10 лет. 
+        Отлично знает Django, Flask и FastAPI. 
+        Оптимизирует код и пишет чистые решения.
+
+    - name: "SQL"
+      level: 4
+      description: |
+        Хорошее владение SQL, работа с PostgreSQL и MySQL.
+        Понимание индексов и оптимизации запросов.
+
+  residence:
+    country: "Россия"
+    city: "Москва"
+    street: "Ленина"
+    house_number: 10
+    apartment_number: 42
+
+  pets:
+    - name: "Барсик"
+      breed: "Британец"
+      can_meow: true
+
+    - name: "Рекс"
+      breed: "Овчарка"
+      can_meow: false
