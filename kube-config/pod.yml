@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: short-app
-    image: antonlarichev/short-app:latest
+    image: antonlarichev/short-api
     resources:
       limits:
         memory: "128Mi"

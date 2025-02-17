@@ -3,9 +3,10 @@ kind: Service
 metadata: 
   name: image-app-port
 spec:
-  type: ClusterIP 
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 80
+      nodePort: 31200
   selector:
     components: web_image
-  ports:
-    - port: 80        
-      targetPort: 80  
