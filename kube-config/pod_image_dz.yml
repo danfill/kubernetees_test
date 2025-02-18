@@ -10,7 +10,7 @@ spec:
     image: antonlarichev/conv-app:1.2
     resources:
       limits:
-        memory: "512Mi"
+        memory: "256Mi"
         cpu: "250m"
     ports:
       - containerPort: 80
