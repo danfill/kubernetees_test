@@ -14,8 +14,7 @@ spec:
     spec:
       containers:
       - name: short-app
-        image: antonlarichev/short-app:latest
-        imagePullPolicy: Always
+        image: antonlarichev/short-app
         resources:
           limits:
             memory: "128Mi"
