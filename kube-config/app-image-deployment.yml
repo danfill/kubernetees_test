@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-app-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      components: web_image
+  template:
+    metadata:
+      labels:
+        components: web_image
+    spec:
+      containers:
+      - name: image-app
+        image: antonlarichev/conv-app:1.2
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "250m"
+        ports:
+          - containerPort: 80
