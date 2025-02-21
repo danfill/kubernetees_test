@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: short-app-deployment
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       components: web
@@ -17,7 +17,7 @@ spec:
         image: antonlarichev/short-app
         resources:
           limits:
-            memory: "128Mi"
+            memory: "256Mi"
             cpu: "100m"
         ports:
           - containerPort: 80
