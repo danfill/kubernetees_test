@@ -18,4 +18,4 @@ spec:
           service:
             name: short-app-clusterip
             port:
-              number: 80
+              number: 443
