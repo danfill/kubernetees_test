@@ -10,4 +10,4 @@ spec:
       targetPort: 443
       protocol: TCP
   selector:
-    components: web_image
+    components: web

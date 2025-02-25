@@ -21,4 +21,4 @@ spec:
             memory: "512Mi"
             cpu: "250m"
         ports:
-          - containerPort: 443
+          - containerPort: 80
