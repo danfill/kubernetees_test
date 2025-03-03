@@ -19,3 +19,13 @@ spec:
             name: short-app-clusterip
             port:
               number: 80
+  - host: kubepostgress.entropyapitrackingtest.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend: 
+          service:
+            name: postgres-clusterip
+            port:
+              number: 5432
