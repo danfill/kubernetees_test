@@ -16,12 +16,15 @@ spec:
         path: "/"
         backend: 
           service:
-            name: rmq-clusterip
+            name: short-app-clusterip
             port:
-              number: 15672
+              number: 80
+  - host: rmqtest.entropyapitrackingtest.com
+    http:
+      paths:
       - pathType: Prefix
-        path: "/rmq"
-        backend:
+        path: "/"
+        backend: 
           service:
             name: rmq-clusterip
             port:
