@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: rmq
-        image: rabbitmq:4.0.7
+        image: rabbitmq:3-management
         resources:
           limits:
             memory: "250Mi"
@@ -24,9 +24,9 @@ spec:
             mountPath: /var/lib/rabbitmq/
             subPath: rmq
         env:
-          - name: SEED_USERNAME
+          - name: RABBITMQ_DEFAULT_USER
             value: demo
-          - name: SEED_USER_PASSWORD
+          - name: RABBITMQ_DEFAULT_PASS
             value: demo
         ports:
         - containerPort: 5672  
