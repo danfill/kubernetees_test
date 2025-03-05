@@ -6,14 +6,17 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - protocol: TCP
-      port: 5672      # AMQP порт
+    - name: amqp
+      protocol: TCP
+      port: 5672
       targetPort: 5672
-    - protocol: TCP
-      port: 15672     # Веб-консоль
+    - name: management
+      protocol: TCP
+      port: 15672
       targetPort: 15672
-    - protocol: TCP
-      port: 25672     # Порт для кластерной связи (не будет использоваться через Ingress)
+    - name: clustering
+      protocol: TCP
+      port: 25672
       targetPort: 25672
   selector:
     app: rmq
