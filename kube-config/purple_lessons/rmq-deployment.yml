@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rmq-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rmq
+  template:
+    metadata:
+      labels:
+        app: rmq
+    spec:
+      containers:
+      - name: rmq
+        image: rabbitmq:4.0.7
+        resources:
+          limits:
+            memory: "250Mi"
+            cpu: "150m"
+        volumeMounts:
+          - name: rmq-data
+            mountPath: /var/lib/rabbitmq/
+            subPath: rmq
+        env:
+          - name: SEED_USERNAME
+            value: demo
+          - name: SEED_USER_PASSWORD
+            value: demo
+        ports:
+        - containerPort: 5432
+      volumes:
+        - name: rmq-data
+          persistentVolumeClaim:
+            claimName: rmq-pvc
+          
