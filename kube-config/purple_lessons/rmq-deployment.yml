@@ -14,14 +14,14 @@ spec:
     spec:
       containers:
       - name: rmq
-        image: rabbitmq:3-management
+        image: rabbitmq:3.7
         resources:
           limits:
             memory: "250Mi"
             cpu: "150m"
         volumeMounts:
           - name: rmq-data
-            mountPath: /var/lib/rabbitmq/
+            mountPath: /var/lib/rabbitmq/mnesia
             
         env:
           - name: RABBITMQ_DEFAULT_USER
