@@ -29,7 +29,9 @@ spec:
           - name: SEED_USER_PASSWORD
             value: demo
         ports:
-        - containerPort: 5432
+        - containerPort: 5672  # Порт для AMQP
+        - containerPort: 15672 # Порт для веб-консоли
+        - containerPort: 25672 # Порт для кластерной связи
       volumes:
         - name: rmq-data
           persistentVolumeClaim:
