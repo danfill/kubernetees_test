@@ -22,7 +22,7 @@ spec:
         volumeMounts:
           - name: rmq-data
             mountPath: /var/lib/rabbitmq/
-            subPath: rmq
+            
         env:
           - name: RABBITMQ_DEFAULT_USER
             value: demo
