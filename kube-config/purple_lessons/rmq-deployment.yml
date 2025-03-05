@@ -28,6 +28,8 @@ spec:
             value: demo
           - name: RABBITMQ_DEFAULT_PASS
             value: demo
+          - name: RABBITMQ_ERLANG_COOKIE
+            value: VAVMHPDMZAZXEXMGENHU
         ports:
         - containerPort: 5672  
         - containerPort: 15672 
