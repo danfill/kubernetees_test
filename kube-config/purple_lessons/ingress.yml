@@ -28,4 +28,4 @@ spec:
           service:
             name: rmq-clusterip
             port:
-              number: 80
+              number: 15672
