@@ -13,6 +13,7 @@ spec:
       labels:
         app: rmq
     spec:
+      hostname: rmq-host  # <- Добавляем сюда
       containers:
       - name: rmq
         image: rabbitmq:3-management
@@ -32,7 +33,7 @@ spec:
           - name: RABBITMQ_ERLANG_COOKIE
             value: VAVMHPDMZAZXEXMGENHU
           - name: RABBITMQ_NODENAME
-            value: "rabbit@rmq"
+            value: "rabbit@rmq-host"  # Должно совпадать с hostname!
         ports:
         - containerPort: 5672  
         - containerPort: 15672 
@@ -41,4 +42,3 @@ spec:
         - name: rmq-data
           persistentVolumeClaim:
             claimName: rmq-pvc
-          
