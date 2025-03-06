@@ -21,7 +21,7 @@ spec:
             cpu: "150m"
         volumeMounts:
           - name: rmq-data
-            mountPath: /var/lib/rabbitmq/mnesia
+            mountPath: /var/lib/rabbitmq/
             
         env:
           - name: RABBITMQ_DEFAULT_USER
@@ -30,6 +30,8 @@ spec:
             value: demo
           - name: RABBITMQ_ERLANG_COOKIE
             value: VAVMHPDMZAZXEXMGENHU
+          - name: RABBITMQ_NODENAME
+            value: "rabbit@rmq"
         ports:
         - containerPort: 5672  
         - containerPort: 15672 
