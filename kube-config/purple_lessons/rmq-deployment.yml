@@ -21,7 +21,7 @@ spec:
             cpu: "150m"
         volumeMounts:
           - name: rmq-data
-            mountPath: /var/lib/rabbitmq/
+            mountPath: /var/lib/rabbitmq/mnesia
             
         env:
           - name: RABBITMQ_DEFAULT_USER
