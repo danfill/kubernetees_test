@@ -1,8 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: rmq-deployment
 spec:
+  serviceName: "rmq-deployment"
   replicas: 1
   selector:
     matchLabels:
