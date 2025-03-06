@@ -19,5 +19,5 @@ spec:
       port: 25672
       targetPort: 25672
   selector:
-    app: rmq
+    app: rabbitmq
 
