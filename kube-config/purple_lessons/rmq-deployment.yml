@@ -1,30 +1,25 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: rmq-deployment
 spec:
-  serviceName: "rmq-deployment"
   replicas: 1
   selector:
     matchLabels:
-      app: rmq
+      app: rabbitmq
   template:
     metadata:
       labels:
-        app: rmq
+        app: rabbitmq
     spec:
-      hostname: rmq-host  # <- Добавляем сюда
+      hostname: rmq-host  # Устанавливаем фиксированный hostname
       containers:
-      - name: rmq
+      - name: rabbitmq
         image: rabbitmq:3-management
         resources:
           limits:
             memory: "250Mi"
             cpu: "150m"
-        volumeMounts:
-          - name: rmq-data
-            mountPath: /var/lib/rabbitmq/mnesia
-            
         env:
           - name: RABBITMQ_DEFAULT_USER
             value: demo
@@ -33,11 +28,14 @@ spec:
           - name: RABBITMQ_ERLANG_COOKIE
             value: VAVMHPDMZAZXEXMGENHU
           - name: RABBITMQ_NODENAME
-            value: "rabbit@rmq-host"  # Должно совпадать с hostname!
+            value: "rabbit@rmq-host"  # Должно совпадать с hostname
         ports:
-        - containerPort: 5672  
-        - containerPort: 15672 
-        - containerPort: 25672 
+        - containerPort: 5672   # Основной порт RabbitMQ
+        - containerPort: 15672  # Порт админки (management plugin)
+        - containerPort: 25672  # Порт для кластеризации (можно удалить)
+        volumeMounts:
+          - name: rmq-data
+            mountPath: /var/lib/rabbitmq/mnesia
       volumes:
         - name: rmq-data
           persistentVolumeClaim:
