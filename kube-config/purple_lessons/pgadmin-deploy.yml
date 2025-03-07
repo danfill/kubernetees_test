@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: pgadmin4
-          image: dpage/pgadmin4
+          image: dpage/pgadmin4:5.4
           env:
             - name: PGADMIN_DEFAULT_EMAIL
               value: "nremizov@wakeapp.com"
