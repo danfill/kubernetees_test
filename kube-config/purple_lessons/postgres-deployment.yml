@@ -33,12 +33,12 @@ spec:
             valueFrom: 
               secretKeyRef:
                 name: postgres-secret
-                key: POSTGRES_USER
+                key: postgres-root-username
           - name: POSTGRES_PASSWORD
             valueFrom: 
               secretKeyRef:
                 name: postgres-secret
-                key: POSTGRES_PASSWORD
+                key: postgres-root-password
         ports:
         - containerPort: 5432
       volumes:
