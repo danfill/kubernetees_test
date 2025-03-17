@@ -9,8 +9,8 @@ spec:
   ports:
     - name: admin
       protocol: TCP
-      port: 30200
-      targetPort: 30200
+      port: 80
+      targetPort: 80
   selector:
     app: pgadmin
 
