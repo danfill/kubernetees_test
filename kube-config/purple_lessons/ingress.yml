@@ -38,4 +38,4 @@ spec:
           service:
             name: pgadmin-clusterip
             port:
-              number: 30200
+              number: 80
