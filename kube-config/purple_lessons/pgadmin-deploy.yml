@@ -17,7 +17,7 @@ spec:
           image: dpage/pgadmin4:5.4
           env:
             - name: PGADMIN_DEFAULT_EMAIL
-              value: "nremizov@wakeapp.com"
+              value: "admin@admin.com"
             - name: PGADMIN_DEFAULT_PASSWORD
               valueFrom:
                 secretKeyRef:
