@@ -39,11 +39,11 @@ spec:
             name: pgadmin-clusterip
             port:
               number: 80
-  - host: api.entropyapitrackingtest.com
+  - host: kubetest.entropyapitrackingtest.com
     http:
       paths:
       - pathType: Prefix
-        path: "/"
+        path: "/api"
         backend: 
           service:
             name: short-api-clusterip
