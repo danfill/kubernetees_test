@@ -15,10 +15,11 @@ spec:
       containers:
       - name: short-api
         image: antonlarichev/short-api:v1.0
+        imagePullPolicy: Always
         resources:
           limits:
             memory: "500Mi"
-            cpu: "200m"
+            cpu: "150m"
         env:
           - name: DATABASE_URL
             valueFrom:
