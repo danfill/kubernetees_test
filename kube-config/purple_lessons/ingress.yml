@@ -39,3 +39,13 @@ spec:
             name: pgadmin-clusterip
             port:
               number: 80
+  - host: api.entropyapitrackingtest.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend: 
+          service:
+            name: short-api-clusterip
+            port:
+              number: 3000
