@@ -40,7 +40,7 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 10
             timeoutSeconds: 2
-            failureThreshold: 60  # 10 минут = 60 × 10 сек
+            failureThreshold: 100  # 10 минут = 60 × 10 сек
 
           livenessProbe:
             httpGet:
