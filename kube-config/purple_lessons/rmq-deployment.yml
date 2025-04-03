@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rmq-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      hostname: rmq-host  # Устанавливаем фиксированный hostname
+      containers:
+      - name: rabbitmq
+        image: rabbitmq:3-management
+        resources:
+          limits:
+            memory: "250Mi"
+            cpu: "150m"
+        env:
+          - name: RABBITMQ_DEFAULT_USER
+            value: demo
+          - name: RABBITMQ_DEFAULT_PASS
+            value: demo
+          - name: RABBITMQ_ERLANG_COOKIE
+            value: VAVMHPDMZAZXEXMGENHU
+          - name: RABBITMQ_NODENAME
+            value: "rabbit@rmq-host"  # Должно совпадать с hostname
+        ports:
+        - containerPort: 5672   # Основной порт RabbitMQ
+        - containerPort: 15672  # Порт админки (management plugin)
+        - containerPort: 25672  # Порт для кластеризации (можно удалить)
+        volumeMounts:
+          - name: rmq-data
+            mountPath: /var/lib/rabbitmq/mnesia
+      volumes:
+        - name: rmq-data
+          persistentVolumeClaim:
+            claimName: rmq-pvc

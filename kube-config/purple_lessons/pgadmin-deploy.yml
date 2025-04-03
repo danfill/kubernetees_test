@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin
+spec:
+  selector:
+    matchLabels:
+      app: pgadmin
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pgadmin
+    spec:
+      containers:
+        - name: pgadmin4
+          image: dpage/pgadmin4:9.1
+          env:
+            - name: PGADMIN_DEFAULT_EMAIL
+              value: "admin@admin.com"
+            - name: PGADMIN_DEFAULT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgadmin-secret
+                  key: pgadmin-default-password
+            - name: PGADMIN_PORT
+              value: "80"
+            - name: PGADMIN_SESSION_COOKIE_NAME
+              value: "pgadmin_session"
+            - name: PGADMIN_SESSION_TYPE
+              value: "filesystem"
+            - name: PGADMIN_SESSION_FILE_DIR
+              value: "/var/lib/pgadmin/sessions"  # Путь, где будет храниться информация о сессиях
+          ports:
+            - containerPort: 80
+              name: pgadminport
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "150m"
+            limits:
+              memory: "512Mi"
+              cpu: "300m"
+          volumeMounts:
+            - name: pgadmin-sessions
+              mountPath: /var/lib/pgadmin/sessions  # Монтируем PVC для сессий
+      volumes:
+        - name: pgadmin-sessions
+          persistentVolumeClaim:
+            claimName: pgadmin-pvc  # Имя PVC, который будет использоваться для хранения сессий
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pgadmin-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi  # Указываем необходимый размер диска
