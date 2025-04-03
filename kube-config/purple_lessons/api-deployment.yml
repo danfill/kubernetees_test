@@ -32,6 +32,35 @@ spec:
             - name: test
               mountPath: /etc/test
               readOnly: true
+          startupProbe:
+            httpGet:
+              path: /api
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 60  # 10 минут = 60 × 10 сек
+
+          livenessProbe:
+            httpGet:
+              path: /api
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 15
+            timeoutSeconds: 2
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /api
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
       volumes:
         - name: test
           configMap:
