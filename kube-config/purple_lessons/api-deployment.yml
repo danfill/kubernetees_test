@@ -13,29 +13,29 @@ spec:
         components: backend
     spec:
       containers:
-      - name: short-api
-        image: antonlarichev/short-api:v1.0
-        imagePullPolicy: Always
-        resources:
-          limits:
-            memory: "500Mi"
-            cpu: "150m"
-        env:
-          - name: DATABASE_URL
-            valueFrom:
-              secretKeyRef:
-                name: short-api-secret
-                key: DATABASE_URL
-        ports:
-          - containerPort: 3000
+        - name: short-api
+          image: antonlarichev/short-api:v1.0
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "500Mi"
+              cpu: "150m"
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: short-api-secret
+                  key: DATABASE_URL
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: test
+              mountPath: /etc/test
+              readOnly: true
+      volumes:
+        - name: test
+          configMap:
+            name: demo-config
 #DATABASE_URL
 # postgresql://nikita:89197791836Aa!@postgres-clusterip:5432/demo
 
-      #     volumeMounts:
-      #       - name: test
-      #         mountPath: /etc/test
-      #         readOnly: true
-      # volumes:
-      #   - name: test
-      #     configMap:
-      #       name: demo-config
