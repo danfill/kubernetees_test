@@ -1,0 +1,51 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+  name: myingress
+  annotations: 
+    nginx.ingress.kubernetes.io/add-base-url: "true"
+  labels:
+    name: myingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: kubetest.entropyapitrackingtest.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend: 
+          service:
+            name: short-app-clusterip
+            port:
+              number: 80
+  - host: rmqtest.entropyapitrackingtest.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend: 
+          service:
+            name: rmq-clusterip
+            port:
+              number: 15672
+  - host: pgadmin.entropyapitrackingtest.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend: 
+          service:
+            name: pgadmin-clusterip
+            port:
+              number: 80
+  - host: kubetest.entropyapitrackingtest.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/api"
+        backend: 
+          service:
+            name: short-api-clusterip
+            port:
+              number: 3000
