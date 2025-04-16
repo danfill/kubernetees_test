@@ -4,3 +4,6 @@ metadata:
   name: demo-config
 data:
   key: {{ .Release.Name }}
+  name: {{ .Values..name }}
+  chart: {{ .Chart.AppVersion }}
+  
