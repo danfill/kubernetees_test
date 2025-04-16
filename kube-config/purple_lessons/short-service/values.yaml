@@ -1,6 +1,6 @@
 
 name: Nikita
-short-app:
+shortApp:
   image: antonlarichev/short-app
   image_version: v1.4
   replicas: 1

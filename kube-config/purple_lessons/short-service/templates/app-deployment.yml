@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.short-app.name }}-deployment
-  namespace: {{ .Values.short-app.namespace }}
+  name: {{ .Values.shortApp.name }}-deployment
+  namespace: {{ .Values.shortApp.namespace }}
 spec:
-  replicas: {{ .Values.short-app.replicas }}
+  replicas: {{ .Values.shortApp.replicas }}
   selector:
     matchLabels:
-      components: {{ .Values.short-app.components }}
+      components: {{ .Values.shortApp.components }}
   template:
     metadata:
       labels:
-        components: {{ .Values.short-app.components }}
+        components: {{ .Values.shortApp.components }}
     spec:
       containers:
-      - name: {{ .Values.short-app.name }}
+      - name: {{ .Values.shortApp.name }}
         image: "{{ .Values.short-app.image }}:{{ .Values.short-app.image_version }}"
         imagePullPolicy: Always
         resources:
           limits:
-            memory: {{ .Values.short-app.limits.memory }}
-            cpu: {{ .Values.short-app.limits.cpu }}
+            memory: {{ .Values.shortApp.limits.memory }}
+            cpu: {{ .Values.shortApp.limits.cpu }}
         ports:
-          - containerPort: {{ .Values.short-app.containerPort }}
+          - containerPort: {{ .Values.shortApp.containerPort }}
