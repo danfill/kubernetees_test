@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: short-app-clusterip
-  namespace: default
+  name: {{ .Values.short-app.name }}-clusterip
+  namespace: {{ .Values.short-app.namespace }}
 spec:
   type: ClusterIP
   ports:
-    - port: 80
-      targetPort: 80
+    - port: {{ .Values.short-app.containerPort }}
+      targetPort: {{ .Values.short-app.containerPort }}
       protocol: TCP
   selector:
-    components: web
+    components: {{ .Values.short-app.components }}

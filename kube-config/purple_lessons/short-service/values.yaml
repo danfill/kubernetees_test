@@ -1,2 +1,15 @@
 
 name: Nikita
+short-app:
+  image: antonlarichev/short-app
+  image_version: v1.4
+  replicas: 1
+  namespace: default
+  name: short-app
+  containerPort: 80
+  components: web
+  limits:
+    memory: "256Mi"
+    cpu: "100m"
+
+  
