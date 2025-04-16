@@ -18,8 +18,7 @@ spec:
         image: "{{ .Values.shortApp.image }}:{{ .Values.shortApp.image_version }}"
         imagePullPolicy: Always
         resources:
-          limits:
-            {{ .Values.shortApp.limits | toYaml | nindent 14}}
+          limits: {{ .Values.shortApp.limits | toYaml | nindent 10}}
             
         ports:
           - containerPort: {{ .Values.shortApp.containerPort }}
