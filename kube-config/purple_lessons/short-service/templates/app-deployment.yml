@@ -19,7 +19,10 @@ spec:
         imagePullPolicy: Always
         resources:
           limits:
-            memory: {{ .Values.shortApp.limits.memory }}
-            cpu: {{ .Values.shortApp.limits.cpu }}
+            {{ .Values.shortApp.limits | toYaml | nindent 14}}
+            
         ports:
           - containerPort: {{ .Values.shortApp.containerPort }}
+
+# toYml
+# nintent
